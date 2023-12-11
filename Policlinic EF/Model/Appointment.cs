@@ -17,7 +17,7 @@ namespace Policlinic_EF.Model
         public  int DoctorId { get; set; }
         public Doctor ? Doctor { get; set; }
         public int ServiceId { get; set; }
-        public Service ? Services { get; set; }
+        
 
         private DateOnly appointmentDate;
 
@@ -69,8 +69,5 @@ namespace Policlinic_EF.Model
                 }
             }
         }
-        
-        public AppointmentResult Results { get; set; }
-        //set для расписания доктора
     }
 }

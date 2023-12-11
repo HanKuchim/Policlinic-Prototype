@@ -14,7 +14,6 @@ namespace Policlinic_EF.Model
         public DbSet<Speciality> Specialities{ get; set; }
         public DbSet<WeekDay> WeekDayList { get; set; }
         public DbSet<DoctorShedule> DoctorShedules { get; set; }
-        public DbSet<Service> Services { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Pair> Pairs { get; set; }
 

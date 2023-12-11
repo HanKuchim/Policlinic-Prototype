@@ -30,9 +30,6 @@
                     
             </Button>
         </StackPanel>
-        <StackPanel Grid.Column="1">
-            <ContentControl Content="{Binding Content}"></ContentControl>
-        </StackPanel>
         <StackPanel Grid.Column="2">
 
         </StackPanel>

@@ -60,7 +60,7 @@ class Program
             context.Patients.Add(patient);
             context.SaveChanges();
 
-            AppointmentResult result = new AppointmentResult { SimptomsDescriptoin = " ", TreatmentRecommendations = " " };
+            
 
             
             var pairForAppointment = new Pair( new TimeOnly(11, 00), new TimeOnly(11, 30));
@@ -73,10 +73,8 @@ class Program
             {
                 Patient = patient,
                 Doctor = doctor,
-                Services = new Service { ServiceName = "Консультация", Cost = 50.0 },
                 AppointmentDate = new DateOnly(2023, 1, 2), 
-                AppointmentTime = new Pair(new TimeOnly(11, 00), new TimeOnly(11, 30)),
-                Results = result
+                AppointmentTime = new Pair(new TimeOnly(11, 00), new TimeOnly(11, 30))
             };
 
             context.Appointments.Add(appointment);

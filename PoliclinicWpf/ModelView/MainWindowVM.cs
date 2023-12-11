@@ -50,14 +50,5 @@ namespace PoliclinicWpf.ModelView
                     }));
             }
         }
-        //if(1)
-        //{
-        //    Content = 1
-        //}
-        //else(2)
-        //{
-        //Content = 2
-        //}
-        public ContentControl Content { get; set; } = LocatorControl.Content;
     }
 }
