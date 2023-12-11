@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Policlinic_EF.Model;
 
 
+
 class Program
 {
     static void Main()
@@ -79,6 +80,7 @@ class Program
 
             context.Appointments.Add(appointment);
             context.SaveChanges();
+            
         }
     }
 }

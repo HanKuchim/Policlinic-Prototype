@@ -42,9 +42,7 @@ namespace PoliclinicWpf.Context
                 DoctorShedules = context.DoctorShedules.Local.ToObservableCollection();
                 Specialities = context.Specialities.Local.ToObservableCollection();
                 Appointments = context.Appointments.Local.ToObservableCollection();
-
             }
-            
         }
 
         public void Save()
