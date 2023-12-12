@@ -1,0 +1,48 @@
+﻿<Window x:Class="PoliclinicWpf.View.DoctorSchedule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PoliclinicWpf.View"
+        xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
+        mc:Ignorable="d"
+        Title="DoctorSchedule" Height="450" Width="800">
+    <Window.DataContext>
+        <modelView:MainWindowVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10">
+            <TextBlock Text="Выберите дату" TextAlignment="Center"/>
+            <Calendar 
+                      />
+            <Button Content="Просмотреть приемы на дату"></Button>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <TextBlock Text="Имя Врача:"/>
+                <TextBlock Text="{Binding SelectedDoctor.DoctorName}"/>
+                <TextBlock Text="ID Врача:"/>
+                <TextBlock Text="{Binding SelectedDoctor.DoctorId}"/>
+               <StackPanel>
+                    <CheckBox Content="Понедельник"/>
+                    <CheckBox Content="Вторник"/>
+                    <CheckBox Content="Среда"/>
+                    <CheckBox Content="Четверг"/>
+                    <CheckBox Content="Пятница"/>
+               </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" >
+                <Button Content="Редактировать расписание" Command="{Binding ChangeDoctorSchedule}"></Button>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>

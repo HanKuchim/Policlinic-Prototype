@@ -4,30 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PoliclinicWpf"
+        xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" >
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="279" Width="233" >
+    <Window.DataContext>
+        <modelView:MainWindowVM/>
+    </Window.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
 
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions></Grid.RowDefinitions>
-        <StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Открыть вкладку"></TextBlock>
             <Button Height="50" 
                     Width="80" 
                     Content="Пациенты" 
-                    Command="{Binding ShowPatients}"
-                    Margin="0,120,0,0">
-
+                    Command="{Binding ShowPatients, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="10"
+            >
             </Button>
             <Button Height="50" 
                     Width="80" 
                     Content="Доктора" 
-                    Command="{Binding ShowDoctors}"
-                    Margin="0,90,0,0">
-                    
+                    Command="{Binding ShowDoctors, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="10"
+                    >
             </Button>
         </StackPanel>
         <StackPanel Grid.Column="2">

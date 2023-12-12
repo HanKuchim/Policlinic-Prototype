@@ -40,5 +40,9 @@ namespace Policlinic_EF.Model
         public ObservableCollection<Speciality> DoctorSpecialityLists { get; set; } = new();
         public ObservableCollection<DoctorShedule> DoctorShedules { get; set;} = new();
         public ObservableCollection<Appointment> DoctorAppoitments { get; set; } = new();
+        public override string ToString()
+        {
+            return DoctorName;
+        }
     }   
 }
