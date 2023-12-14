@@ -16,7 +16,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding BlankDoctors}"
+            <ListView ItemsSource="{Binding Doctors}"
                       SelectedItem="{Binding SelectedDoctor, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
                     <GridView>
@@ -34,10 +34,14 @@
                     <TextBlock FontSize="20" Text="{Binding SelectedDoctor.DoctorName}"/>
                     <TextBlock Text="Номер кабинета:"/>
                     <TextBlock FontSize="20" Text="{Binding SelectedDoctor.CabinetNum}"/>
-                    <Button Content="Изменить\Создать расписание" Command="{Binding DisplayDoctorSchedule}"/>
+                    <Button Content="Изменить\Создать расписание" 
+                            Command="{Binding DisplayDoctorSchedule}"/>
+                    <Button Content="Посмотреть приемы доктора" 
+                            Command="{Binding DisplayDoctorAppointments}"></Button>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Bottom">
-                    <Button Content="◄ В главное меню" Command="{Binding MainMenu}"></Button>
+                    <Button Content="◄ В главное меню" 
+                            Command="{Binding MainMenu}"/>
                 </StackPanel>
             </Grid>
         </Grid>

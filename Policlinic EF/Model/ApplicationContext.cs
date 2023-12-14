@@ -33,6 +33,6 @@ namespace Policlinic_EF.Model
         }
 
         private static string path =
-            "\"C:\\Program Files\\Microsoft SQL Server\\MSSQL16.MSSQLSERVER\\MSSQL\\DATA\\Policlinic.mdf\"";
+            "D:\\Учеба\\Лабы\\C#\\SQL\\Policlinic Prototype\\Policlinic EF\\DB\\Policlinic.mdf";
     }
 }

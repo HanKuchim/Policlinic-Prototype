@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:PoliclinicWpf.View"
         xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
         mc:Ignorable="d"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="AppointmentWindow" Height="478" Width="585">
     <Window.DataContext>
         <modelView:MainWindowVM/>
@@ -17,9 +19,16 @@
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10">
             <TextBlock Text="Выберите дату" TextAlignment="Center"/>
-            <Calendar SelectedDate="{Binding SelectedDateTime}" IsTodayHighlighted="True"/>
+            <Calendar SelectedDate="{Binding SelectedDateTime}" 
+                      IsTodayHighlighted="True"/>
+            <TextBlock Text="Время начала приема"></TextBlock>
+            <xctk:TimePicker Value="{Binding SelectedStartTime}"></xctk:TimePicker>
+
+            <TextBlock Text="Время окончания приема"></TextBlock>
+            <xctk:TimePicker Value="{Binding SelectedEndTime}"></xctk:TimePicker>
+
             <TextBlock Text="Выберите Врача" TextAlignment="Center"/>
-            <ComboBox ItemsSource="{Binding BlankDoctors}"
+            <ComboBox ItemsSource="{Binding Doctors}"
                       SelectedItem="{Binding SelectedDoctor}">
             </ComboBox>
         </StackPanel>
@@ -27,23 +36,35 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel>
+            <StackPanel Grid.RowSpan="2">
                 <TextBlock Text="Имя Пациента:"/>
                 <TextBlock Text="{Binding SelectedPatient.Name}"/>
+
                 <TextBlock Text="ID Пациента:"/>
                 <TextBlock Text="{Binding SelectedPatient.PatientId}"/>
+
                 <TextBlock Text="Имя Врача:"/>
                 <TextBlock Text="{Binding SelectedDoctor.DoctorName}"/>
+
                 <TextBlock Text="ID Врача:"/>
                 <TextBlock Text="{Binding SelectedDoctor.DoctorId}"/>
+
                 <TextBlock Text="Номер кабинета:"/>
                 <TextBlock Text="{Binding SelectedDoctor.CabinetNum}"/>
+
                 <TextBlock Text="Дата:"/>
-                <TextBlock Text="{Binding SelectedDateTime}"/>
+                <TextBlock Text="{Binding SelectedDateTime, StringFormat={}{0:yyyy-MM-dd}}"/>
+
+                <TextBlock Text="Начало приема"></TextBlock>
+                <TextBlock Text="{Binding SelectedStartTime, StringFormat={}{0:hh:mm}}"></TextBlock>
+
+                <TextBlock Text="Окончание приема"></TextBlock>
+                <TextBlock Text="{Binding SelectedEndTime, StringFormat={}{0:hh:mm}}"></TextBlock>
             </StackPanel>
-            <StackPanel Grid.Row="1" >
-                <Button Content="Записать на прием!" Command="{Binding ApointmentCommand}"></Button>
+            <StackPanel Grid.Row="2" >
+                <Button Content="Записать на прием!" Command="{Binding AddAppoitment}"></Button>
             </StackPanel>
         </Grid>
         

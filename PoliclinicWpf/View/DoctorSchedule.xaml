@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PoliclinicWpf.View"
         xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="DoctorSchedule" Height="450" Width="800">
     <Window.DataContext>
@@ -15,13 +17,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="10">
-            <TextBlock Text="Выберите дату" TextAlignment="Center"/>
-            <Calendar 
-                      />
-            <Button Content="Просмотреть приемы на дату"></Button>
-        </StackPanel>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -32,17 +28,44 @@
                 <TextBlock Text="ID Врача:"/>
                 <TextBlock Text="{Binding SelectedDoctor.DoctorId}"/>
                <StackPanel>
-                    <CheckBox Content="Понедельник"/>
-                    <CheckBox Content="Вторник"/>
-                    <CheckBox Content="Среда"/>
-                    <CheckBox Content="Четверг"/>
-                    <CheckBox Content="Пятница"/>
+                    <ListView ItemsSource="{Binding SelectedDoctorShedules}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="День недели" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding WeekDay.WeekDayName}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Время Работы" 
+                                                DisplayMemberBinding="{Binding WorkTime}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" >
-                <Button Content="Редактировать расписание" Command="{Binding ChangeDoctorSchedule}"></Button>
+                <Button Content="Редактировать расписание" 
+                        Command="{Binding ChangeDoctorSchedule}"></Button>
+                <Button Content="Добавить рабочий день"></Button>
+                <Button Content="Удалить рабочий день"></Button>
             </StackPanel>
         </Grid>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="День недели"></TextBlock>
+            <ComboBox ItemsSource="{Binding WeekDays}" DisplayMemberPath="WeekDayName"></ComboBox>
 
+            <TextBlock Text="Время начала работы"></TextBlock>
+            <xctk:TimePicker Value="{Binding SelectedStartTime}">
+
+            </xctk:TimePicker>
+
+            <TextBlock Text="Время окончания работы"></TextBlock>
+            <xctk:TimePicker Value="{Binding SelectedEndTime}">
+
+            </xctk:TimePicker>
+
+        </StackPanel>
     </Grid>
 </Window>

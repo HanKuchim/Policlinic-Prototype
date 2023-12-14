@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using Policlinic_EF.Model;
 using PoliclinicWpf.Context;
@@ -51,73 +52,6 @@ namespace PoliclinicWpf.ModelView
                 DoctorShedules = context.DoctorShedules.Local.ToObservableCollection();
                 Specialities = context.Specialities.Local.ToObservableCollection();
                 Appointments = context.Appointments.Local.ToObservableCollection();
-            }
-        }
-        private ObservableCollection<Patient> _blankPatients = new ObservableCollection<Patient>
-        {
-            new Patient
-            {
-                Name = "Valera",
-                PatientId = 1,
-            },
-
-            new Patient
-            {
-                Name = "Sereja",
-                PatientId = 2,
-            },
-
-            new Patient
-            {
-                Name = "Kirila",
-                PatientId = 3,
-            },
-        };
-
-        public ObservableCollection<Patient> BlankPatients
-        {
-            get { return _blankPatients; }
-            set
-            {
-                _blankPatients = value; 
-                OnPropertyChanged("BlankPatients");
-            }
-        }
-
-        private ObservableCollection<Doctor> _blankDoctors = new ObservableCollection<Doctor> {
-            new Doctor
-            {
-                DoctorName = "Kolya",
-                DoctorId = 1,
-                CabinetNum = 1,
-            },
-            new Doctor
-            {
-                DoctorName = "Vasya",
-                DoctorId = 2,
-                CabinetNum = 2,
-            },
-            new Doctor
-            {
-                DoctorName = "Nikita",
-                DoctorId = 3,
-                CabinetNum = 3,
-            },
-            new Doctor
-            {
-                DoctorName = "Leva",
-                DoctorId = 4,
-                CabinetNum = 4,
-            },
-        };
-
-        public ObservableCollection<Doctor> BlankDoctors
-        {
-            get { return _blankDoctors; }
-            set
-            {
-                _blankDoctors = value;
-                OnPropertyChanged("BlankDoctors");
             }
         }
         #endregion
@@ -174,6 +108,9 @@ namespace PoliclinicWpf.ModelView
                     }));
             }
         }
+        public ObservableCollection<DoctorShedule> SelectedDoctorShedules { get; set; }
+        
+
 
         private RelayCommand _displayDoctorSchedule;
 
@@ -181,12 +118,16 @@ namespace PoliclinicWpf.ModelView
         {
             get => _displayDoctorSchedule ?? (_displayDoctorSchedule = new RelayCommand(obj =>
             {
+                SelectedDoctorShedules = new ObservableCollection<DoctorShedule>(
+                    SelectedDoctor.DoctorShedules);
                 var window = new DoctorSchedule();
                 window.Owner = Application.Current.MainWindow.OwnedWindows[0];
                 window.DataContext = this;
                 window.ShowDialog();
             },o => SelectedDoctor != null ? true : false ));
         }
+
+        
 
         private RelayCommand _changeDoctorSchedule;
 
@@ -195,6 +136,7 @@ namespace PoliclinicWpf.ModelView
             get => _changeDoctorSchedule ?? (_changeDoctorSchedule = new RelayCommand(o =>
             {
                 // тут написать код изменяющий расписание)
+                
                 var window = Application.Current.MainWindow.OwnedWindows[0].OwnedWindows[0];
                 window.Close();
             }, o =>
@@ -202,6 +144,18 @@ namespace PoliclinicWpf.ModelView
                 return true;
                 /*(SelectedWeekDays != null)? true : false;*/
             } ));
+        }
+        private RelayCommand _displayDoctorAppointments;
+
+        public RelayCommand DisplayDoctorAppointments
+        {
+            get => _displayDoctorAppointments ?? (_displayDoctorAppointments = new RelayCommand(obj =>
+            {
+                var window = new DoctorAppointments();
+                window.Owner = Application.Current.MainWindow.OwnedWindows[0];
+                window.DataContext = this;
+                window.ShowDialog();
+            }, o => SelectedDoctor != null ? true : false));
         }
 
         private RelayCommand _makeAppointmentCommand;
@@ -283,7 +237,7 @@ namespace PoliclinicWpf.ModelView
                 OnPropertyChanged("SelectedDateTime");
             }
         }
-
+      
 
         private Patient _selectedPatient;
 
@@ -319,6 +273,100 @@ namespace PoliclinicWpf.ModelView
             {
                 _content = value;
                 OnPropertyChanged("Content");
+            }
+        }
+        private ObservableCollection<Appointment> _appointmentsforselecteddate;
+
+        public ObservableCollection<Appointment> AppointmentsForSelectedDate
+        {
+            get { return _appointmentsforselecteddate; }
+            set
+            {
+                _appointmentsforselecteddate = value;
+                OnPropertyChanged(nameof(AppointmentsForSelectedDate));
+            }
+        }
+        private RelayCommand _viewAppointmentsCommand;
+
+        public RelayCommand ViewAppointmentsCommand
+        {
+            get
+            {
+                return _viewAppointmentsCommand ??= new RelayCommand(param =>
+                {
+                    AppointmentsForSelectedDate = new ObservableCollection<Appointment>(
+                        from appointment in SelectedDoctor.DoctorAppoitments
+                        where appointment.AppointmentDate == DateOnly.FromDateTime(SelectedDateTime)
+                        select appointment);
+                }, o =>
+                {
+                    return true;
+                });
+            }
+        }
+
+        private DateTime _selectedStartTime;
+
+        public DateTime SelectedStartTime
+        {
+            get { return _selectedStartTime;}
+            set
+            {
+                _selectedStartTime = value; 
+                OnPropertyChanged(nameof(SelectedStartTime));
+            }
+        }
+        private DateTime _selectedEndTime;
+
+        public DateTime SelectedEndTime
+        {
+            get { return _selectedEndTime; }
+            set
+            {
+                _selectedEndTime = value;
+                OnPropertyChanged(nameof(SelectedEndTime));
+            }
+        }
+
+        private WeekDay _selectedWeekDay;
+
+        public WeekDay SelectedWeekDay
+        {
+            get { return _selectedWeekDay; }
+            set
+            { 
+                _selectedWeekDay = value;
+                OnPropertyChanged(nameof(SelectedWeekDay));
+            }
+        }
+
+        private RelayCommand _addAppoitment;
+
+        public RelayCommand AddAppoitment
+        {
+            get
+            {
+                return _addAppoitment ?? (_addAppoitment = new RelayCommand(obj =>
+                    {
+                        Appointment newAppointment = new Appointment
+                        {
+                            AppointmentDate = DateOnly.FromDateTime(SelectedDateTime),
+                            AppointmentTime = new Pair(TimeOnly.FromDateTime(SelectedStartTime),
+                                TimeOnly.FromDateTime(SelectedEndTime)),
+                            Doctor = SelectedDoctor,
+                            Patient = SelectedPatient
+                        };
+                        Appointments.Add(newAppointment);
+                    }, o =>
+                    {
+                        //валидация
+                        return true;
+                    })
+                {
+
+                })
+                    ;
+
             }
         }
     }
