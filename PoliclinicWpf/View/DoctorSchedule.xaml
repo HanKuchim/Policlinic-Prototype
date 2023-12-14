@@ -28,7 +28,7 @@
                 <TextBlock Text="ID Врача:"/>
                 <TextBlock Text="{Binding SelectedDoctor.DoctorId}"/>
                <StackPanel>
-                    <ListView ItemsSource="{Binding SelectedDoctorShedules}">
+                    <ListView ItemsSource="{Binding SelectedDoctorShedules}" SelectedItem="{Binding SelectedShedule}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="День недели" >
@@ -54,17 +54,15 @@
         </Grid>
         <StackPanel Grid.Column="1">
             <TextBlock Text="День недели"></TextBlock>
-            <ComboBox ItemsSource="{Binding WeekDays}" DisplayMemberPath="WeekDayName"></ComboBox>
+            <ComboBox ItemsSource="{Binding WeekDays}" 
+                      DisplayMemberPath="WeekDayName" 
+                      SelectedItem="{Binding SelectedWeekDay}"></ComboBox>
 
             <TextBlock Text="Время начала работы"></TextBlock>
-            <xctk:TimePicker Value="{Binding SelectedStartTime}">
-
-            </xctk:TimePicker>
+            <xctk:TimePicker Value="{Binding SelectedStartTime}"></xctk:TimePicker>
 
             <TextBlock Text="Время окончания работы"></TextBlock>
-            <xctk:TimePicker Value="{Binding SelectedEndTime}">
-
-            </xctk:TimePicker>
+            <xctk:TimePicker Value="{Binding SelectedEndTime}"></xctk:TimePicker>
 
         </StackPanel>
     </Grid>

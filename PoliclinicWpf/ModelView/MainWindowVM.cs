@@ -21,11 +21,8 @@ namespace PoliclinicWpf.ModelView
     public class MainWindowVM : BaseChanged
     {
         #region DataBase
-
         
-
-       
-        private ApplicationContext context;
+        private  ApplicationContext context;
         public ObservableCollection<WeekDay> WeekDays { get; set; }
         public ObservableCollection<Pair> Pairs { get; set; }
         public ObservableCollection<Patient> Patients { get; set; }
@@ -304,7 +301,7 @@ namespace PoliclinicWpf.ModelView
                 });
             }
         }
-
+        //Мб как то обнулять время после выхода из окон в которых они используются?
         private DateTime _selectedStartTime;
 
         public DateTime SelectedStartTime
@@ -364,10 +361,18 @@ namespace PoliclinicWpf.ModelView
                     })
                 {
 
-                })
-                    ;
+                });
 
             }
         }
+
+        private DoctorShedule _selectedShedule;
+
+        public DoctorShedule SelectedShedule
+        {
+            get { return _selectedShedule; }
+            set { _selectedShedule = value; OnPropertyChanged(nameof(SelectedShedule)); }
+        }
+
     }
 }
