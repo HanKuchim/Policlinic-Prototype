@@ -1,0 +1,51 @@
+﻿<Window x:Class="PoliclinicWpf.View.NewSchedule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PoliclinicWpf.View"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        x:Name="NewScheduleWindow"
+        Title="NewSchedule" Height="300" Width="520">
+    <Window.DataContext>
+        <modelView:MainWindowVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.7*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" 
+                       Text="Выберите начало и конец расписания:"
+                       FontSize="15"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center"
+                       Margin="10"/>
+        <StackPanel Grid.Row="1" Margin="10">
+            <ComboBox ItemsSource="{Binding WeekDays}"
+                          DisplayMemberPath="WeekDayName"
+                          SelectedItem="{Binding SelectedWeekDay}"
+                          Margin="10"/>
+            <xctk:TimePicker Value="{Binding SelectedStartTime}"/>
+            <xctk:TimePicker Value="{Binding SelectedEndTime}"/>
+            <StackPanel Margin="10">
+                <Button Content="Добавить"
+                        Command="{Binding AddScheduleDay}"></Button>
+                <Button Content="Выйти">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction
+                                Command="{Binding ExitWindow}"
+                                CommandParameter="{Binding ElementName=NewScheduleWindow}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+            
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:PoliclinicWpf.View"
              xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
              mc:Ignorable="d" 
+             x:Name="DoctorControlWindow"
              d:DesignHeight="450" d:DesignWidth="800">
     <ContentControl.DataContext>
         <modelView:MainWindowVM></modelView:MainWindowVM>
@@ -38,6 +39,10 @@
                             Command="{Binding DisplayDoctorSchedule}"/>
                     <Button Content="Посмотреть приемы доктора" 
                             Command="{Binding DisplayDoctorAppointments}"></Button>
+                    <Button Content="Добавить Доктора" 
+                            Command="{Binding CreateDoctorWindow}" CommandParameter="{Binding ElementName=DoctorControlWindow}"></Button>
+                    <Button Content="Удалить Доктора" 
+                            Command="{Binding DeleteDoctor}"></Button>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Bottom">
                     <Button Content="◄ В главное меню" 

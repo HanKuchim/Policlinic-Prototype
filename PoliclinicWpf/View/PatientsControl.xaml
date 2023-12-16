@@ -6,13 +6,14 @@
              xmlns:local="clr-namespace:PoliclinicWpf.View"
              xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
              mc:Ignorable="d" 
-             d:DesignHeight="695" d:DesignWidth="805">
+             x:Name="PatientWindow"
+             d:DesignHeight="450" d:DesignWidth="800">
     <ContentControl.DataContext>
         <modelView:MainWindowVM></modelView:MainWindowVM>
     </ContentControl.DataContext>
     <Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
@@ -27,18 +28,23 @@
                                         Header="Id"/>
                     </GridView>
                 </ListView.View>
-                </ListView>
-                <Grid Grid.Column="1">
-                    <StackPanel>
+            </ListView>
+            <Grid Grid.Column="1">
+                <StackPanel>
                     <TextBlock Text="Имя:"/>
                     <TextBlock FontSize="20" Text="{Binding SelectedPatient.Name}"/>
                     <Button Content="Записать на прием" Command="{Binding OpenAppointmentWindow}"/>
-                    </StackPanel>
-                    <StackPanel VerticalAlignment="Bottom">
+                    <Button Content="Создать пациента" 
+                            Command="{Binding CreatePatientWindow}"
+                            CommandParameter="{Binding ElementName=PatientWindow}"/>
+                    <Button Content="Удалить пациента" 
+                            Command="{Binding DeletePatient}"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Bottom">
                     <Button Content="◄ В главное меню" 
                             Command="{Binding MainMenu}"/>
-                    </StackPanel>
-                </Grid>
+                </StackPanel>
             </Grid>
+        </Grid>
     </Grid>
 </UserControl>

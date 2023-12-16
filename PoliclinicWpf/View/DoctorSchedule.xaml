@@ -8,6 +8,7 @@
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
+        x:Name="DoctorScheduleWindow"
         Title="DoctorSchedule" Height="450" Width="800">
     <Window.DataContext>
         <modelView:MainWindowVM/>
@@ -48,8 +49,12 @@
             <StackPanel Grid.Row="1" >
                 <Button Content="Редактировать расписание" 
                         Command="{Binding ChangeDoctorSchedule}"></Button>
-                <Button Content="Добавить рабочий день"></Button>
-                <Button Content="Удалить рабочий день"></Button>
+                <Button Content="Добавить рабочий день"
+                        CommandParameter="{Binding ElementName=DoctorScheduleWindow}"
+                        Command="{Binding AddScheduleDayWindow}"></Button>
+                <Button Content="Удалить рабочий день" 
+                        CommandParameter="{Binding ElementName=DoctorScheduleWindow}"
+                        Command="{Binding DeleteScheduleDayWindow}"></Button>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Column="1">

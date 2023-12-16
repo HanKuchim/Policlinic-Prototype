@@ -1,0 +1,63 @@
+﻿<Window x:Class="PoliclinicWpf.View.CreatePatient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PoliclinicWpf.View"
+        xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
+        mc:Ignorable="d"
+        x:Name="CreatePatientWindow"
+        Title="CreatePatient" Height="220" Width="405">
+    <Window.DataContext>
+        <modelView:MainWindowVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.6*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Имя" 
+                           Grid.Row="0"
+                           Margin="0 10"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Описание" 
+                           Grid.Row="1"
+                           Margin="0 10"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+               
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Row="0" 
+                         Margin="0 10"
+                         Text="{Binding CreateStrings[0]}"/>
+                <TextBox Grid.Row="1" Grid.RowSpan="2"
+                         Margin="0 10"
+                         Text="{Binding CreateStrings[1]}"/>
+            </Grid>
+
+        </Grid>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Создать" Width="200"
+                    Command="{Binding CreatePatient}"
+                    CommandParameter="{Binding ElementName=CreatePatientWindow}"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -29,10 +29,12 @@ namespace Policlinic_EF.Model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename="+ path + "; Integrated Security=True;Initial Catalog=Policlinic");
+                "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename="+ path2 + "; Integrated Security=True;Initial Catalog=Policlinic");
         }
 
         private static string path =
             "D:\\Учеба\\Лабы\\C#\\SQL\\Policlinic Prototype\\Policlinic EF\\DB\\Policlinic.mdf";
+        private static string path2 =
+            "C:\\Program Files\\Microsoft SQL Server\\MSSQL16.MSSQLSERVER\\MSSQL\\DATA\\Policlinic.mdf";
     }
 }
