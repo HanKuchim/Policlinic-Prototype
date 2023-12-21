@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
         mc:Ignorable="d"
-        Title="DoctorAppointments" Height="450" Width="800">
+        Title="DoctorAppointments" Height="450" Width="800" Background="{StaticResource MainColor}">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,31 +15,43 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10">
-            <TextBlock Text="Имя Врача:"/>
-            <TextBlock Text="{Binding SelectedDoctor.DoctorName}"/>
-            <TextBlock Text="ID Врача:"/>
-            <TextBlock Text="{Binding SelectedDoctor.DoctorId}"/>
-            <TextBlock Text="Выберите дату" TextAlignment="Center"/>
+            <TextBlock Text="Имя Врача:"
+                       Style="{StaticResource TextBlockStyle}"
+                       />
+            <TextBlock Text="{Binding SelectedDoctor.DoctorName}"
+                       />
+            <TextBlock Text="ID Врача:"
+                       Style="{StaticResource TextBlockStyle}"
+                       />
+            <TextBlock Text="{Binding SelectedDoctor.DoctorId}"
+                       />
+            <TextBlock Text="Выберите дату" 
+                       TextAlignment="Center"
+                       Style="{StaticResource TextBlockStyle}"/>
             <Calendar x:Name="DoctorCalendar" SelectedDate="{Binding SelectedDateTime}" >
                  <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectedDatesChanged">
                         <i:InvokeCommandAction
                             Command="{Binding ViewAppointmentsCommand}"
                            />
-                            
                     </i:EventTrigger>
                  </i:Interaction.Triggers>
             </Calendar>
         </StackPanel>
-        <StackPanel  Grid.Column="1">
-            <ListView ItemsSource="{Binding AppointmentsForSelectedDate}">
+        <StackPanel  Grid.Column="1" Background="{StaticResource MainColor}">
+            <ListView Background="{StaticResource MainColor}" ItemsSource="{Binding AppointmentsForSelectedDate}">
                 <ListView.View>
-                    <GridView>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridHeaderStyle}">
                         <GridViewColumn Header="ID Приема" 
-                                        DisplayMemberBinding="{Binding AppointmentId}" />
+                                        HeaderContainerStyle="{StaticResource GridHeaderStyle}" 
+                                        DisplayMemberBinding="{Binding AppointmentId}" 
+                                        />
                         <GridViewColumn Header="Дата приема" 
-                                        DisplayMemberBinding="{Binding AppointmentDate}" />
+                                        DisplayMemberBinding="{Binding AppointmentDate}"
+                                        HeaderContainerStyle="{StaticResource GridHeaderStyle}"
+                                        />
                         <GridViewColumn Header="Время приема" 
+                                        HeaderContainerStyle="{StaticResource GridHeaderStyle}"
                                         DisplayMemberBinding="{Binding AppointmentTime}" />
                     </GridView>
                 </ListView.View>

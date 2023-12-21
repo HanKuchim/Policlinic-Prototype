@@ -9,35 +9,45 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         x:Name="DoctorScheduleWindow"
-        Title="DoctorSchedule" Height="450" Width="400">
+        Title="DoctorSchedule" Height="300" Width="400" Background="{StaticResource MainColor}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition />
+                <RowDefinition Height="235px"/>
+                <RowDefinition Height="50px"/>
             </Grid.RowDefinitions>
             <StackPanel>
-                <TextBlock Text="Имя Врача:"/>
-                <TextBlock Text="{Binding SelectedDoctor.DoctorName}"/>
-                <TextBlock Text="ID Врача:"/>
-                <TextBlock Text="{Binding SelectedDoctor.DoctorId}"/>
-               <StackPanel Height="auto" >
-                   <ListView ItemsSource="{Binding SelectedDoctorShedules}" SelectedItem="{Binding SelectedShedule}">
+                <TextBlock Text="Имя Врача:"
+                           Style="{StaticResource TextBlockStyle}"
+                           />
+                <TextBlock Text="{Binding SelectedDoctor.DoctorName}"
+                           />
+                <TextBlock Text="ID Врача:"
+                           Style="{StaticResource TextBlockStyle}"
+                           />
+                <TextBlock Text="{Binding SelectedDoctor.DoctorId}"
+                           />
+               <StackPanel Height="auto" Background="{StaticResource MainColor}">
+                   <ListView Background="{StaticResource MainColor}"
+                       ItemsSource="{Binding SelectedDoctorShedules}" 
+                             SelectedItem="{Binding SelectedShedule}">
                        <ListView.View>
-                           <GridView>
-                               <GridViewColumn Header="День недели" >
+                           <GridView ColumnHeaderContainerStyle="{StaticResource GridHeaderStyle}">
+                               <GridViewColumn Header="День недели" HeaderContainerStyle="{StaticResource GridHeaderStyle}">
                                    <GridViewColumn.CellTemplate>
                                        <DataTemplate>
                                            <TextBlock Text="{Binding WeekDay.WeekDayName}"></TextBlock>
                                        </DataTemplate>
                                    </GridViewColumn.CellTemplate>
                                </GridViewColumn>
-                               <GridViewColumn Header="Время Работы" 
-                                               DisplayMemberBinding="{Binding WorkTime}"></GridViewColumn>
-                           </GridView>
+                                <GridViewColumn Header="Время Работы" 
+                                               DisplayMemberBinding="{Binding WorkTime}"
+                                               HeaderContainerStyle="{StaticResource GridHeaderStyle}"
+                                               />
+                            </GridView>
                        </ListView.View>
                    </ListView>
                 </StackPanel>
@@ -45,11 +55,15 @@
             <StackPanel Grid.Row="1" >
                 <Button Content="Добавить рабочий день"
                         CommandParameter="{Binding ElementName=DoctorScheduleWindow}"
-                        Command="{Binding AddScheduleDayWindow}"></Button>
+                        Command="{Binding AddScheduleDayWindow}"
+                        Style="{StaticResource ButtonStyle}"
+                        Margin="3px"
+                        />
                 <Button Content="Удалить рабочий день" 
-                        Command="{Binding DeleteShedule}"></Button>
+                        Command="{Binding DeleteShedule}"
+                        Style="{StaticResource ButtonStyle}"
+                        />
             </StackPanel>
         </Grid>
-        
     </Grid>
 </Window>

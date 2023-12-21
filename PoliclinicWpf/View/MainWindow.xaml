@@ -7,32 +7,28 @@
         xmlns:modelView="clr-namespace:PoliclinicWpf.ModelView"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="279" Width="233" >
+        Title="Поликлиника" Height="279" Width="279" >
+
     <Window.DataContext>
         <modelView:MainWindowVM/>
     </Window.DataContext>
-    <Grid>
-
+    <Grid Background="{StaticResource MainColor}">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="Открыть вкладку"></TextBlock>
-            <Button Height="50" 
+            <TextBlock Text="Открыть вкладку" Style="{StaticResource TextBlockStyle}"/>
+            <Button Style="{StaticResource ButtonStyle}"
+                    Height="50" 
                     Width="80" 
                     Content="Пациенты" 
                     Command="{Binding ShowPatients, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="10"
-            >
+                    Margin="10">
             </Button>
-            <Button Height="50" 
-                    Width="80" 
-                    Content="Доктора" 
-                    Command="{Binding ShowDoctors, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="10"
-                    >
+            <Button  Style="{StaticResource ButtonStyle}"
+                     Height="50" 
+                     Width="80" 
+                     Content="Доктора"
+                     Command="{Binding ShowDoctors, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="10">
             </Button>
         </StackPanel>
-        <StackPanel Grid.Column="2">
-
-        </StackPanel>
-
     </Grid>
 </Window>

@@ -8,67 +8,104 @@
         mc:Ignorable="d"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="AppointmentWindow" Height="478" Width="585">
+        Title="AppointmentWindow" Height="478" Width="585" Background="{StaticResource MainColor}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10">
-            <TextBlock Text="Выберите дату" TextAlignment="Center"/>
-            <Calendar SelectedDate="{Binding SelectedDateTime}" 
+            <TextBlock Text="Выберите дату" 
+                       TextAlignment="Center"
+                       Style="{StaticResource TextBlockStyle}"
+                       />
+            <Calendar
+                SelectedDate="{Binding SelectedDateTime}" 
                       IsTodayHighlighted="True"/>
-            <TextBlock Text="Время начала приема"></TextBlock>
+            <TextBlock Text="Время начала приема"
+                       Style="{StaticResource TextBlockStyle}"
+                       />
             <xctk:TimePicker Value="{Binding SelectedStartTime}" 
                              Format="Custom" 
                              FormatString="HH:mm"></xctk:TimePicker>
-
-            <TextBlock Text="Время окончания приема"></TextBlock>
+            <TextBlock Text="Время окончания приема" 
+                       Style="{StaticResource TextBlockStyle}"
+                       />
             <xctk:TimePicker Value="{Binding SelectedEndTime}" 
                              Format="Custom" 
                              FormatString="HH:mm"
                              ></xctk:TimePicker>
 
-            <TextBlock Text="Выберите Врача" TextAlignment="Center"/>
+            <TextBlock Text="Выберите Врача"
+                       TextAlignment="Center"
+                       Style="{StaticResource TextBlockStyle}"
+                       />
             <ComboBox ItemsSource="{Binding Doctors}"
                       SelectedItem="{Binding SelectedDoctor}">
             </ComboBox>
         </StackPanel>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.RowSpan="2">
-                <TextBlock Text="Имя Пациента:"/>
-                <TextBlock Text="{Binding SelectedPatient.Name}"/>
+        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2px">
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.RowSpan="2">
+                    <TextBlock Text="Имя Пациента:"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="{Binding SelectedPatient.Name}"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="ID Пациента:"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="{Binding SelectedPatient.PatientId}"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="Имя Врача:"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="{Binding SelectedDoctor.DoctorName}"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="ID Врача:"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="{Binding SelectedDoctor.DoctorId}"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="Номер кабинета:"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="{Binding SelectedDoctor.CabinetNum}"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="Дата:"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="{Binding SelectedDateTime}"/>
 
-                <TextBlock Text="ID Пациента:"/>
-                <TextBlock Text="{Binding SelectedPatient.PatientId}"/>
-
-                <TextBlock Text="Имя Врача:"/>
-                <TextBlock Text="{Binding SelectedDoctor.DoctorName}"/>
-
-                <TextBlock Text="ID Врача:"/>
-                <TextBlock Text="{Binding SelectedDoctor.DoctorId}"/>
-
-                <TextBlock Text="Номер кабинета:"/>
-                <TextBlock Text="{Binding SelectedDoctor.CabinetNum}"/>
-
-                <TextBlock Text="Дата:"/>
-                <TextBlock Text="{Binding SelectedDateTime}"/>
-
-                <TextBlock Text="Начало приема"></TextBlock>
-                <TextBlock Text="{Binding SelectedStartTime}"></TextBlock>
-
-                <TextBlock Text="Окончание приема"></TextBlock>
-                <TextBlock Text="{Binding SelectedEndTime}"></TextBlock>
-            </StackPanel>
-            <StackPanel Grid.Row="2" >
-                <Button Content="Записать на прием!" Command="{Binding AddAppoitment}"></Button>
-            </StackPanel>
-        </Grid>
-        
+                    <TextBlock Text="Начало приема"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="{Binding SelectedStartTime}"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="Окончание приема"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                    <TextBlock Text="{Binding SelectedEndTime}"
+                   Style="{StaticResource TextBlockStyle}"
+                   />
+                </StackPanel>
+                <StackPanel Grid.Row="2">
+                    <Button Content="Записать на прием!" 
+                Command="{Binding AddAppoitment}"
+                Style="{StaticResource ButtonStyle}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

@@ -9,7 +9,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         x:Name="NewScheduleWindow"
-        Title="NewSchedule" Height="300" Width="520">
+        Title="NewSchedule" Height="300" Width="520" Background="{StaticResource MainColor}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"/>
@@ -20,7 +20,8 @@
                        FontSize="15"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center"
-                       Margin="10"/>
+                       Margin="10"
+                       Style="{StaticResource TextBlockStyle}"/>
         <StackPanel Grid.Row="1" Margin="10">
             <ComboBox ItemsSource="{Binding WeekDays}"
                           DisplayMemberPath="WeekDayName"
@@ -30,8 +31,10 @@
             <xctk:TimePicker Value="{Binding SelectedEndTime}"/>
             <StackPanel Margin="10">
                 <Button Content="Добавить"
-                        Command="{Binding AddScheduleDay}"></Button>
-                <Button Content="Выйти">
+                        Command="{Binding AddScheduleDay}"
+                        Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Выйти"
+                        Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction

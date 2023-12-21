@@ -5,41 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PoliclinicWpf.View"
         mc:Ignorable="d"
-        Title="PatientWindow" Height="450" Width="800">
+        Title="PatientWindow" Height="450" Width="800" Background="{StaticResource MainColor}">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
-            <ListView 
+            <ListView Background="{StaticResource MainColor}" 
                 ItemsSource="{Binding PatientsObs, UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding SelectedPatient,UpdateSourceTrigger=PropertyChanged}"
                 FontSize="20">
                 <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}"
-                                        Header="Name" />
-                        <GridViewColumn DisplayMemberBinding="{Binding PatientId}"
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridHeaderStyle}">
+                        <GridViewColumn HeaderContainerStyle="{StaticResource GridHeaderStyle}" DisplayMemberBinding="{Binding Name}"
+                                        Header="Name"/>
+                        <GridViewColumn HeaderContainerStyle="{StaticResource GridHeaderStyle}" DisplayMemberBinding="{Binding PatientId}"
                                         Header="Id"/>
                     </GridView>
                 </ListView.View>
             </ListView>
             <Grid Grid.Column="1">
-                <StackPanel>
-                    <TextBlock Text="Имя:"/>
-                    <TextBlock FontSize="20" Text="{Binding SelectedPatient.Name}"/>
-                    <Button Content="Записать на прием" Command="{Binding OpenAppointmentWindow}"/>
-                    <Button Content="Создать пациента" 
-                            Command="{Binding CreatePatientWindow}"
-                            CommandParameter="{Binding ElementName=PatientWindow}"/>
-                    <Button Content="Удалить пациента" 
-                            Command="{Binding DeletePatient}"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Bottom">
-                    <Button Content="◄ В главное меню" 
-                            Command="{Binding MainMenu}"/>
-                </StackPanel>
+                <Border BorderBrush="Black" BorderThickness="2px">
+                    <StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Имя:"
+                                       Style="{StaticResource TextBlockStyle}"/>
+                            <TextBlock FontSize="20"
+                                       Style="{StaticResource TextBlockStyle}"
+                                       Text="{Binding SelectedPatient.Name}"
+                            />
+                            <Button Style="{StaticResource ButtonStyle}"
+                                    Margin="3px"
+                                    Content="Записать на прием" 
+                                    Command="{Binding OpenAppointmentWindow}"
+                                    />
+                            <Button Content="Создать пациента"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Margin="3px"
+                                    Command="{Binding CreatePatientWindow}"
+                                    CommandParameter="{Binding ElementName=PatientWindow}"/>
+                            <Button 
+                                    Style="{StaticResource ButtonStyle}"
+                                    Margin="3px"
+                                    Content="Удалить пациента" 
+                                    Command="{Binding DeletePatient}"
+                            />
+                        </StackPanel>
+                        <Button
+                                    Margin="0 295 0 0"
+                                    Style="{StaticResource ButtonStyle}"
+                                    FontFamily="Tahoma"
+                                    Content="◄ В главное меню" 
+                                    Command="{Binding MainMenu}"/>
+                    </StackPanel>
+                </Border>
+                
             </Grid>
         </Grid>
     </Grid>

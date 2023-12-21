@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PoliclinicWpf.View"
         mc:Ignorable="d"
-        Title="DoctorWindow" Height="450" Width="800">
+        Title="DoctorWindow" Height="450" Width="800" Background="{StaticResource MainColor}">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -13,38 +13,63 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
             <ListView ItemsSource="{Binding Doctors}"
+                      Background="{StaticResource MainColor}"
+                      FontSize="20"
                       SelectedItem="{Binding SelectedDoctor, UpdateSourceTrigger=PropertyChanged}">
-                <ListView.View>
-                    <GridView>
+                <ListView.View> 
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridHeaderStyle}">
                         <GridViewColumn DisplayMemberBinding="{Binding DoctorName}"
                                         Header="Name"/>
                         <GridViewColumn DisplayMemberBinding="{Binding DoctorId}"
                                         Header="Id"/>
                     </GridView>
                 </ListView.View>
-
             </ListView>
-            <Grid Grid.Column="1">
-                <StackPanel>
-                    <TextBlock Text="Имя:"/>
-                    <TextBlock FontSize="20" Text="{Binding SelectedDoctor.DoctorName}"/>
-                    <TextBlock Text="Номер кабинета:"/>
-                    <TextBlock FontSize="20" Text="{Binding SelectedDoctor.CabinetNum}"/>
-                    <Button Content="Изменить\Создать расписание" 
-                            Command="{Binding DisplayDoctorSchedule}"/>
-                    <Button Content="Посмотреть приемы доктора" 
-                            Command="{Binding DisplayDoctorAppointments}"></Button>
-                    <Button Content="Добавить Доктора" 
-                            Command="{Binding CreateDoctorWindow}" ></Button>
-                    <Button Content="Удалить Доктора" 
-                            Command="{Binding DeleteDoctor}"></Button>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Bottom">
-                    <Button Content="◄ В главное меню" 
-                            Command="{Binding MainMenu}"/>
-                </StackPanel>
-            </Grid>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2px">
+                <Grid Grid.Column="1">
+                    <StackPanel Style="{StaticResource BorderPanel}">
+                        <TextBlock Text="Имя:" 
+                                   Style="{StaticResource TextBlockStyle}"
+                        />
+                        <TextBlock FontSize="20" 
+                                   Text="{Binding SelectedDoctor.DoctorName}"
+                                   Style="{StaticResource TextBlockStyle}"
+                        />
+                        <TextBlock Text="Номер кабинета:"
+                                   Style="{StaticResource TextBlockStyle}"
+                        />
+                        <TextBlock FontSize="20" 
+                                   Text="{Binding SelectedDoctor.CabinetNum}"
+                                   Style="{StaticResource TextBlockStyle}"
+                        />
+                        <Button Content="Изменить\Создать расписание" 
+                                Command="{Binding DisplayDoctorSchedule}"
+                                Style="{StaticResource ButtonStyle}"
+                                Margin="3px"
+                        />
+                        <Button Content="Посмотреть приемы доктора" 
+                                Command="{Binding DisplayDoctorAppointments}"
+                                Style="{StaticResource ButtonStyle}"
+                                Margin="3px"
+                        />
+                        <Button Content="Добавить Доктора" 
+                                Command="{Binding CreateDoctorWindow}" 
+                                Style="{StaticResource ButtonStyle}"
+                                Margin="3px"
+                        />
+                        <Button Content="Удалить Доктора" 
+                                Command="{Binding DeleteDoctor}"
+                                Style="{StaticResource ButtonStyle}"
+                                Margin="3px"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom">
+                        <Button Content="◄ В главное меню" 
+                                Command="{Binding MainMenu}"
+                                Style="{StaticResource ButtonStyle}"
+                        />
+                    </StackPanel>
+                </Grid>
+            </Border>
         </Grid>
-
     </Grid>
 </Window>

@@ -4,6 +4,33 @@
              xmlns:local="clr-namespace:PoliclinicWpf"
              StartupUri="/View/MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="MainColor">#ebd386</SolidColorBrush>
+        <SolidColorBrush x:Key="ElementColor">#d6976f</SolidColorBrush>
+
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="Background" Value="{StaticResource ElementColor}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontFamily" Value="Tahoma"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="Border" x:Key="BorderStyle">
+            <Setter Property="BorderThickness" Value="4"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockStyle">
+            <Setter Property="FontFamily" Value="Tahoma"/>
+        </Style>
+        <Style TargetType="GridViewColumnHeader" x:Key="GridHeaderStyle">
+            <Setter Property="Background" Value="{StaticResource MainColor}"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+            </Style.Resources>
+        </Style>
     </Application.Resources>
 </Application>
