@@ -11,7 +11,6 @@ namespace Policlinic_EF.Model
     {
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Speciality> Specialities{ get; set; }
         public DbSet<WeekDay> WeekDayList { get; set; }
         public DbSet<DoctorShedule> DoctorShedules { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
@@ -29,7 +28,7 @@ namespace Policlinic_EF.Model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename="+ path2 + "; Integrated Security=True;Initial Catalog=Policlinic");
+                "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename="+ path + "; Integrated Security=True;Initial Catalog=Policlinic");
         }
 
         private static string path =

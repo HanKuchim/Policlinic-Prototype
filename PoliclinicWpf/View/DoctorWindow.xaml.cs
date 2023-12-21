@@ -11,17 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PoliclinicWpf.ModelView;
 
 namespace PoliclinicWpf.View
 {
     /// <summary>
-    /// Interaction logic for DeleteSchedule.xaml
+    /// Interaction logic for DoctorWindow.xaml
     /// </summary>
-    public partial class DeleteSchedule : Window
+    public partial class DoctorWindow : Window
     {
-        public DeleteSchedule()
+        public DoctorWindow()
         {
             InitializeComponent();
+            DataContext = new DoctorVM();
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PoliclinicWpf.ModelView;
+using PoliclinicWpf.View;
 
 namespace PoliclinicWpf
 {
@@ -23,6 +24,5 @@ namespace PoliclinicWpf
             DataContext = new MainWindowVM();
         }
 
-        
     }
 }

@@ -21,6 +21,7 @@ namespace PoliclinicWpf.View
     {
         public CreatePatient()
         {
+            
             InitializeComponent();
         }
     }

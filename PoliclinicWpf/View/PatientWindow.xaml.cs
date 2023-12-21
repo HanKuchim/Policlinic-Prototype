@@ -10,19 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PoliclinicWpf.ModelView;
 
 namespace PoliclinicWpf.View
 {
     /// <summary>
-    /// Interaction logic for DoctorsControl.xaml
+    /// Interaction logic for PatientWindow.xaml
     /// </summary>
-    public partial class DoctorsControl : UserControl
+    public partial class PatientWindow : Window
     {
-        public DoctorsControl()
+        public PatientWindow()
         {
             InitializeComponent();
+            DataContext = new PatientsVM();
         }
     }
 }

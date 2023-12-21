@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -10,9 +12,11 @@ namespace Policlinic_EF.Model
 {
     public class Pair
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        private TimeOnly policlinicStartTime = new TimeOnly(9, 00);
-        private TimeOnly policlinicEndTime = new TimeOnly(17, 00);
+        private TimeOnly policlinicStartTime = new TimeOnly(8, 00);
+        private TimeOnly policlinicEndTime = new TimeOnly(18, 00);
 
         private TimeOnly startTime;
 

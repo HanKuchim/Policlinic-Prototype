@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,8 @@ namespace Policlinic_EF.Model
 {
     public class Doctor
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DoctorId { get; set; }
         private string doctorName;
 
@@ -37,7 +41,6 @@ namespace Policlinic_EF.Model
             }
         }
 
-        public ObservableCollection<Speciality> DoctorSpecialityLists { get; set; } = new();
         public ObservableCollection<DoctorShedule> DoctorShedules { get; set;} = new();
         public ObservableCollection<Appointment> DoctorAppoitments { get; set; } = new();
         public override string ToString()

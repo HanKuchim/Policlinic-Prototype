@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Policlinic_EF.Model;
+using PoliclinicWpf.ModelView;
 
 namespace PoliclinicWpf.View
 {
@@ -19,9 +21,10 @@ namespace PoliclinicWpf.View
     /// </summary>
     public partial class DoctorAppointments : Window
     {
-        public DoctorAppointments()
+        public DoctorAppointments(Doctor SelectedDoctor)
         {
             InitializeComponent();
+            DataContext = new DoctorAppointmentsVM(SelectedDoctor);
         }
     }
 }

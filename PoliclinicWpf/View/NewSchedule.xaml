@@ -10,9 +10,6 @@
         mc:Ignorable="d"
         x:Name="NewScheduleWindow"
         Title="NewSchedule" Height="300" Width="520">
-    <Window.DataContext>
-        <modelView:MainWindowVM/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"/>

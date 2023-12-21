@@ -9,9 +9,6 @@
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="AppointmentWindow" Height="478" Width="585">
-    <Window.DataContext>
-        <modelView:MainWindowVM/>
-    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -22,10 +19,15 @@
             <Calendar SelectedDate="{Binding SelectedDateTime}" 
                       IsTodayHighlighted="True"/>
             <TextBlock Text="Время начала приема"></TextBlock>
-            <xctk:TimePicker Value="{Binding SelectedStartTime}"></xctk:TimePicker>
+            <xctk:TimePicker Value="{Binding SelectedStartTime}" 
+                             Format="Custom" 
+                             FormatString="HH:mm"></xctk:TimePicker>
 
             <TextBlock Text="Время окончания приема"></TextBlock>
-            <xctk:TimePicker Value="{Binding SelectedEndTime}"></xctk:TimePicker>
+            <xctk:TimePicker Value="{Binding SelectedEndTime}" 
+                             Format="Custom" 
+                             FormatString="HH:mm"
+                             ></xctk:TimePicker>
 
             <TextBlock Text="Выберите Врача" TextAlignment="Center"/>
             <ComboBox ItemsSource="{Binding Doctors}"
@@ -55,13 +57,13 @@
                 <TextBlock Text="{Binding SelectedDoctor.CabinetNum}"/>
 
                 <TextBlock Text="Дата:"/>
-                <TextBlock Text="{Binding SelectedDateTime, StringFormat={}{0:yyyy-MM-dd}}"/>
+                <TextBlock Text="{Binding SelectedDateTime}"/>
 
                 <TextBlock Text="Начало приема"></TextBlock>
-                <TextBlock Text="{Binding SelectedStartTime, StringFormat={}{0:hh:mm}}"></TextBlock>
+                <TextBlock Text="{Binding SelectedStartTime}"></TextBlock>
 
                 <TextBlock Text="Окончание приема"></TextBlock>
-                <TextBlock Text="{Binding SelectedEndTime, StringFormat={}{0:hh:mm}}"></TextBlock>
+                <TextBlock Text="{Binding SelectedEndTime}"></TextBlock>
             </StackPanel>
             <StackPanel Grid.Row="2" >
                 <Button Content="Записать на прием!" Command="{Binding AddAppoitment}"></Button>

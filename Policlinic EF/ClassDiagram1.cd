@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Policlinic_EF.Model.ApplicationContext">
+    <Position X="1.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAQAAACAAQAACAAAAUAAAAAAABgAAAAYAAAA=</HashCode>
+      <FileName>Model\ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Policlinic_EF.Model.Appointment">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAQAAAAAAAAAAAAAAAAgCQAQIAQAAAAEACAA=</HashCode>
+      <FileName>Model\Appointment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Policlinic_EF.Model.Doctor">
+    <Position X="5.25" Y="1" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EBAAAAAAAAAAAAAEAAAAAAAEAAACRAAAAEAAAAQAAAA=</HashCode>
+      <FileName>Model\Doctor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Policlinic_EF.Model.DoctorShedule">
+    <Position X="7" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAgAACAAAAAgCAAQAAAAAABAAAAA=</HashCode>
+      <FileName>Model\DoctorShedule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Policlinic_EF.Model.Pair">
+    <Position X="10.5" Y="1" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACABAAAAAAAAAEAAAgECAAIEAggAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Pair.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Policlinic_EF.Model.Patient">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAAAAEAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Model\Patient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Policlinic_EF.Model.WeekDay">
+    <Position X="8.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAABAAAAAQQAAAA=</HashCode>
+      <FileName>Model\WeekDay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
