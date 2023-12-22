@@ -14,21 +14,34 @@ namespace PoliclinicWpf.ModelView
     public class DoctorAppointmentsVM : BaseChanged     
     {
         private ApplicationContext context = new ApplicationContext();
+        public ObservableCollection<WeekDay> WeekDays { get; set; }
+        public ObservableCollection<Pair> Pairs { get; set; }
+        public ObservableCollection<Patient> PatientsObs { get; set; }
         public ObservableCollection<Doctor> Doctors { get; set; }
+        public ObservableCollection<DoctorShedule> DoctorShedules { get; set; }
         public ObservableCollection<Appointment> Appointments { get; set; }
 
         public DoctorAppointmentsVM(Doctor SelectedDoctorForApp)
         {
+            context.WeekDayList.Load();
+            context.Pairs.Load();
+            context.Patients.Load();
             context.Doctors.Load();
+            context.DoctorShedules.Load();
             context.Appointments.Load();
 
+            WeekDays = context.WeekDayList.Local.ToObservableCollection();
+            Pairs = context.Pairs.Local.ToObservableCollection();
+            PatientsObs = context.Patients.Local.ToObservableCollection();
             Doctors = context.Doctors.Local.ToObservableCollection();
+            DoctorShedules = context.DoctorShedules.Local.ToObservableCollection();
             Appointments = context.Appointments.Local.ToObservableCollection();
+
             SelectedDoctor = SelectedDoctorForApp;
         }
         public ObservableCollection<Appointment> AppointmentsForSelectedDate { get; set; }
         private RelayCommand _viewAppointmentsCommand;
-
+        public string Text { get; set; }
         public RelayCommand ViewAppointmentsCommand
         {
             get
@@ -39,6 +52,8 @@ namespace PoliclinicWpf.ModelView
                         from appointment in SelectedDoctor.DoctorAppoitments
                         where appointment.AppointmentDate == DateOnly.FromDateTime(SelectedDateTime)
                         select appointment);
+                    Text = "123";
+                    MessageBox.Show(Text);
                 }, o =>
                 {
                     return true;

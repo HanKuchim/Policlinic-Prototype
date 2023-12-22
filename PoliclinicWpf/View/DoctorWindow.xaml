@@ -27,7 +27,7 @@
             </ListView>
             <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2px">
                 <Grid Grid.Column="1">
-                    <StackPanel Style="{StaticResource BorderPanel}">
+                    <StackPanel >
                         <TextBlock Text="Имя:" 
                                    Style="{StaticResource TextBlockStyle}"
                         />

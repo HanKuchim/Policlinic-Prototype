@@ -37,6 +37,7 @@
                     </i:EventTrigger>
                  </i:Interaction.Triggers>
             </Calendar>
+            <TextBlock Text="{Binding SelectedDateTime}"></TextBlock>
         </StackPanel>
         <StackPanel  Grid.Column="1" Background="{StaticResource MainColor}">
             <ListView Background="{StaticResource MainColor}" ItemsSource="{Binding AppointmentsForSelectedDate}">

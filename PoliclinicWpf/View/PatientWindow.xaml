@@ -53,7 +53,7 @@
                             />
                         </StackPanel>
                         <Button
-                                    Margin="0 295 0 0"
+                                    Margin="0 270 0 0"
                                     Style="{StaticResource ButtonStyle}"
                                     FontFamily="Tahoma"
                                     Content="◄ В главное меню" 
