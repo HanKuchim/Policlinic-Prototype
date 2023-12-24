@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using Policlinic_EF.Model;
 using PoliclinicWpf.Model.BaseModel;
 
@@ -39,7 +40,7 @@ namespace PoliclinicWpf.ModelView
 
             SelectedDoctor = SelectedDoctorForApp;
         }
-        public ObservableCollection<Appointment> AppointmentsForSelectedDate { get; set; }
+        public ObservableCollection<Appointment> AppointmentsForSelectedDate { get; set; } = new ObservableCollection<Appointment>();
         private RelayCommand _viewAppointmentsCommand;
         public string Text { get; set; }
         public RelayCommand ViewAppointmentsCommand
@@ -48,12 +49,15 @@ namespace PoliclinicWpf.ModelView
             {
                 return _viewAppointmentsCommand ??= new RelayCommand(param =>
                 {
-                    AppointmentsForSelectedDate = new ObservableCollection<Appointment>(
-                        from appointment in SelectedDoctor.DoctorAppoitments
-                        where appointment.AppointmentDate == DateOnly.FromDateTime(SelectedDateTime)
-                        select appointment);
-                    Text = "123";
-                    MessageBox.Show(Text);
+                    // поменял метод поиска, заработало. Скорее всего проблема в коробке 
+                    foreach (var item in Appointments)
+                    {
+                        if (item.AppointmentDate == DateOnly.FromDateTime(SelectedDateTime));
+                        {
+                            AppointmentsForSelectedDate.Add(item);
+                        }
+                    }
+                    
                 }, o =>
                 {
                     return true;
