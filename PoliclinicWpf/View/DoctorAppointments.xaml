@@ -42,17 +42,12 @@
         <StackPanel  Grid.Column="1" Background="{StaticResource MainColor}">
             <ListView Background="{StaticResource MainColor}" ItemsSource="{Binding AppointmentsForSelectedDate}">
                 <ListView.View>
-                    <GridView ColumnHeaderContainerStyle="{StaticResource GridHeaderStyle}">
+                    <GridView>
                         <GridViewColumn Header="ID Приема" 
-                                        HeaderContainerStyle="{StaticResource GridHeaderStyle}" 
-                                        DisplayMemberBinding="{Binding AppointmentId}" 
-                                        />
+                                        DisplayMemberBinding="{Binding AppointmentId}" />
                         <GridViewColumn Header="Дата приема" 
-                                        DisplayMemberBinding="{Binding AppointmentDate}"
-                                        HeaderContainerStyle="{StaticResource GridHeaderStyle}"
-                                        />
+                                        DisplayMemberBinding="{Binding AppointmentDate}" />
                         <GridViewColumn Header="Время приема" 
-                                        HeaderContainerStyle="{StaticResource GridHeaderStyle}"
                                         DisplayMemberBinding="{Binding AppointmentTime}" />
                     </GridView>
                 </ListView.View>
